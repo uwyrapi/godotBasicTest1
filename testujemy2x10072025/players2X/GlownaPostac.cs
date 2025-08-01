@@ -131,6 +131,17 @@ public partial class GlownaPostac : CharacterBody2D
 			velocity.Y = -JumpForce;
 		}
 
+		//instructions on how the bullet goes
+		if (Input.IsKeyPressed(Key.Q))
+		{
+			var bullet = GD.Load<PackedScene>("res://Bullet.tscn").Instantiate<BulletP1cs>();
+			GetParent().AddChild(bullet);
+			bullet.GlobalPosition = GlobalPosition;
+			bullet.Init(Input.IsKeyPressed(Key.A) ? Vector2.Left :
+						Input.IsKeyPressed(Key.D) ? Vector2.Right : Vector2.Up);
+		}
+
+
 		Velocity = velocity;
 		MoveAndSlide();
 	}
