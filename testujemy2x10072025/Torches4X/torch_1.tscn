@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvt2ya8rbyno0"]
+
+[ext_resource type="Texture2D" uid="uid://bb4hbbnpv8csa" path="res://png_s/Torch1png.png" id="1_qhkgw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf4ry"]
+size = Vector2(31, 30)
+
+[node name="Torch1" type="Area2D"]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(105, 66)
+texture = ExtResource("1_qhkgw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(105, 66)
+shape = SubResource("RectangleShape2D_hf4ry")

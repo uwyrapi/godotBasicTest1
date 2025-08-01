@@ -1,10 +1,55 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkgoj1amkdda6"]
+[gd_scene load_steps=18 format=3 uid="uid://bkgoj1amkdda6"]
 
-[ext_resource type="Script" uid="uid://capo4ypbp60ao" path="res://Node2d.cs" id="1_wtcfe"]
-[ext_resource type="Texture2D" uid="uid://bt412erivwdvj" path="res://oscar-johansson-oscarjohansson-06.jpg" id="2_0e48y"]
-[ext_resource type="Texture2D" uid="uid://dho1mpw5bj1ab" path="res://tilesOneCave.png" id="2_0hol4"]
-[ext_resource type="Texture2D" uid="uid://l2wh2sv54eo7" path="res://tilesOneCave2.png" id="4_kdubu"]
-[ext_resource type="PackedScene" uid="uid://btgqufov2i46o" path="res://scenyx2/glownaPostac.tscn" id="5_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://bt412erivwdvj" path="res://png_s/oscar-johansson-oscarjohansson-06.jpg" id="2_0e48y"]
+[ext_resource type="Texture2D" uid="uid://dho1mpw5bj1ab" path="res://png_s/tilesOneCave.png" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://l2wh2sv54eo7" path="res://png_s/tilesOneCave2.png" id="4_kdubu"]
+[ext_resource type="PackedScene" uid="uid://bvt2ya8rbyno0" path="res://Torches4X/torch_1.tscn" id="5_kdubu"]
+[ext_resource type="PackedScene" uid="uid://btgqufov2i46o" path="res://players2X/glownaPostac.tscn" id="5_q6r6c"]
+[ext_resource type="Script" uid="uid://b7ks3nho7wixu" path="res://Torches4X/Torch1.cs" id="6_d21ai"]
+[ext_resource type="Script" uid="uid://c2mvpghh6pm32" path="res://Torches4X/Torch2.cs" id="7_d21ai"]
+[ext_resource type="Script" uid="uid://dpp76lj88w0p6" path="res://Torches4X/Torch3.cs" id="8_rj586"]
+[ext_resource type="Script" uid="uid://bm11yvnkxetjb" path="res://Torches4X/Torch4.cs" id="9_4d7sh"]
+[ext_resource type="PackedScene" uid="uid://5o3qqbs0tr8q" path="res://Ladder2X/ladder_1.tscn" id="10_ir8iy"]
+[ext_resource type="Script" uid="uid://b68lgwq7gdpy3" path="res://Ladder2X/Ladder1.cs" id="11_hqns4"]
+[ext_resource type="Script" uid="uid://eknnqwm1vcxy" path="res://Ladder2X/Ladder2.cs" id="12_x0ka3"]
+[ext_resource type="PackedScene" uid="uid://csk8c66xbsw55" path="res://players2X/characterXijklTscn.tscn" id="13_0h7mo"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_0hol4"]
+script/source = "using Godot;
+using System;
+
+public partial class Player : Sprite2D
+{
+	public override void _Ready()
+	{
+		GD.Print(\"Player script running!\");
+	}
+
+	public override void _Process(double delta)
+	{
+		float AMOUNT = 5;
+		if (Input.IsKeyPressed(Key.W))
+		{
+			this.Position += new Vector2(0, -AMOUNT);
+		}
+
+		if (Input.IsKeyPressed(Key.S))
+		{
+			this.Position += new Vector2(0, AMOUNT);
+		}
+
+		if (Input.IsKeyPressed(Key.A))
+		{
+			this.Position += new Vector2(-AMOUNT, 0);
+		}
+
+		if (Input.IsKeyPressed(Key.D))
+		{
+			this.Position += new Vector2(AMOUNT, 0);
+		}
+	}
+}
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
 texture = ExtResource("2_0hol4")
@@ -113,7 +158,7 @@ sources/0 = SubResource("TileSetAtlasSource_kdubu")
 sources/1 = SubResource("TileSetAtlasSource_d21ai")
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_wtcfe")
+script = SubResource("CSharpScript_0hol4")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -133,17 +178,45 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
-rotation = 0.00340214
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_d21ai")
 format = 2
-layer_0/tile_data = PackedInt32Array(524287, 65536, 0, 524285, 65536, 0, 524283, 65536, 0, 524281, 65536, 0, 524279, 65536, 0, 524277, 65536, 0, 524275, 65536, 0, 524273, 65536, 0, 458753, 65536, 1, 458755, 65536, 1, 458757, 65536, 1, 458759, 65536, 1, 458761, 65536, 1, 458763, 65536, 0, 458765, 65536, 0, 458767, 65536, 0, 458769, 65536, 1, 327697, 0, 1, 196625, 65536, 1, 65553, 65536, 1, -65519, 0, 1, -196591, 0, 1, -327663, 0, 1, -458735, 0, 1, -589805, 65536, 1, -458733, 65536, 1, -327661, 65536, 1, -196589, 65536, 1, -65517, 65536, 1, 65555, 65536, 1, 196627, 65536, 1, 327699, 65536, 1, 458771, 65536, 1, 589843, 65536, 1, 720915, 65536, 1, 720913, 65536, 1, 589841, 65536, 1, 589839, 65536, 1, 720911, 65536, 1, 720909, 65536, 1, 589837, 65536, 1, 589835, 65536, 1, 720907, 65536, 1, 720905, 65536, 1, 589833, 65536, 1, 589831, 65536, 1, 720903, 65536, 1, 720901, 65536, 1, 589829, 65536, 1, 589827, 65536, 1, 720899, 65536, 1, 720897, 65536, 1, 589825, 65536, 1, 655359, 65536, 1, 786431, 65536, 1, 786429, 65536, 1, 655357, 65536, 1, 655355, 65536, 1, 786427, 65536, 1, 786425, 65536, 1, 655353, 65536, 1, 655351, 65536, 1, 786423, 65536, 1, 786421, 65536, 1, 655349, 65536, 1, 655347, 65536, 1, 786419, 65536, 1, 786417, 65536, 1, 655345, 65536, 1, 655343, 65536, 1, 786415, 65536, 1, 786413, 65536, 1, 786411, 65536, 1, 655339, 65536, 1, 655341, 65536, 1, 524271, 65536, 1, 524269, 65536, 1, 524267, 65536, 1, 393197, 65536, 1, 393195, 65536, 1, 393199, 131072, 0, 262125, 131072, 0, 262123, 65536, 1, 131051, 131072, 1, -21, 131072, 1, -131093, 131072, 1, -262165, 131072, 1, -393237, 131072, 1, -524307, 65536, 2, -524305, 65536, 2, -524303, 65536, 2, -524301, 65536, 2, -524299, 131072, 2, -655371, 65536, 1, -786441, 65536, 1, -655369, 65536, 2, -655367, 131072, 2, -524309, 65536, 1, -655381, 65536, 1, -655379, 65536, 1, -655377, 65536, 1, -655375, 65536, 1, -655373, 65536, 1, -786443, 65536, 1, -786445, 65536, 1, -786447, 65536, 1, -786449, 65536, 1, -786451, 65536, 1, -786453, 65536, 1, -786439, 65536, 1, -786437, 65536, 2, -786435, 65536, 2, -786433, 65536, 2, -851967, 65536, 2, -851965, 65536, 2, -851963, 65536, 2, -851961, 65536, 2, -851959, 65536, 2, -851957, 65536, 2, -851955, 65536, 2, -851953, 65536, 2, -851951, 65536, 1, -720879, 0, 1, -720877, 65536, 1, -851949, 65536, 1, 327681, 0, 0, 327683, 65536, 0, 327685, 65536, 0, 327687, 65536, 0, 327689, 131072, 0, 65551, 65536, 0, 65549, 0, 0, 196621, 0, 2, 196623, 65536, 2, -131076, 0, 0, -131074, 131072, 0, -2, 131072, 2, -4, 0, 2, -589811, 131072, 0, -589813, 0, 0, -458741, 0, 2, -458739, 131072, 2, 327695, 262144, 0, -262147, 262144, 0, -589807, 0, 1, -720884, 262144, 0, -131087, 131072, 1, -15, 131072, 2, -262161, 0, 0, -131089, 0, 1, -17, 0, 2, -262159, 131072, 0, -393232, 262144, 0, 262127, 262144, 0, 131053, 196609, 0, -19, 196609, 0, -131091, 196609, 0, -262163, 196609, 0, -393235, 196609, 0, -65521, 196609, 0, -196593, 196609, 0, -720881, 196609, 0, -589809, 196609, 0, -458737, 196609, 0, -327665, 196609, 0)
+layer_0/tile_data = PackedInt32Array(524287, 65536, 0, 524285, 65536, 0, 524283, 65536, 0, 524281, 65536, 0, 524279, 65536, 0, 524277, 65536, 0, 524275, 65536, 0, 524273, 65536, 0, 458753, 65536, 1, 458755, 65536, 1, 458757, 65536, 1, 458759, 65536, 1, 458761, 65536, 1, 458763, 65536, 0, 458765, 65536, 0, 458767, 65536, 0, 458769, 65536, 1, 327697, 0, 1, 196625, 65536, 1, 65553, 65536, 1, -65519, 0, 1, -196591, 0, 1, -327663, 0, 1, -458735, 0, 1, -589805, 65536, 1, -458733, 65536, 1, -327661, 65536, 1, -196589, 65536, 1, -65517, 65536, 1, 65555, 65536, 1, 196627, 65536, 1, 327699, 65536, 1, 458771, 65536, 1, 589843, 65536, 1, 720915, 65536, 1, 720913, 65536, 1, 589841, 65536, 1, 589839, 65536, 1, 720911, 65536, 1, 720909, 65536, 1, 589837, 65536, 1, 589835, 65536, 1, 720907, 65536, 1, 720905, 65536, 1, 589833, 65536, 1, 589831, 65536, 1, 720903, 65536, 1, 720901, 65536, 1, 589829, 65536, 1, 589827, 65536, 1, 720899, 65536, 1, 720897, 65536, 1, 589825, 65536, 1, 655359, 65536, 1, 786431, 65536, 1, 786429, 65536, 1, 655357, 65536, 1, 655355, 65536, 1, 786427, 65536, 1, 786425, 65536, 1, 655353, 65536, 1, 655351, 65536, 1, 786423, 65536, 1, 786421, 65536, 1, 655349, 65536, 1, 655347, 65536, 1, 786419, 65536, 1, 786417, 65536, 1, 655345, 65536, 1, 655343, 65536, 1, 786415, 65536, 1, 786413, 65536, 1, 786411, 65536, 1, 655339, 65536, 1, 655341, 65536, 1, 524271, 65536, 1, 524269, 65536, 1, 524267, 65536, 1, 393197, 65536, 1, 393195, 65536, 1, 262125, 131072, 0, 262123, 65536, 1, 131051, 131072, 1, -21, 131072, 1, -131093, 131072, 1, -262165, 131072, 1, -393237, 131072, 1, -524307, 65536, 2, -524305, 131072, 2, -786441, 65536, 2, -524309, 65536, 1, -655381, 65536, 1, -655379, 65536, 1, -655377, 131072, 1, -786443, 65536, 2, -786445, 65536, 2, -786447, 65536, 2, -786449, 65536, 1, -786451, 65536, 1, -786453, 65536, 1, -786439, 65536, 2, -786437, 65536, 2, -786435, 65536, 2, -786433, 65536, 2, -851967, 65536, 2, -851965, 65536, 2, -851963, 65536, 2, -851961, 65536, 2, -851959, 65536, 2, -851957, 65536, 2, -851955, 65536, 2, -851953, 65536, 2, -851951, 65536, 1, -720879, 0, 1, -720877, 65536, 1, -851949, 65536, 1, 327681, 0, 0, 327683, 65536, 0, 327685, 65536, 0, 327687, 65536, 0, 327689, 131072, 0, 65551, 65536, 0, 65549, 0, 0, 196621, 0, 2, 196623, 65536, 2, -131076, 0, 0, -131074, 131072, 0, -589811, 131072, 0, -589813, 0, 0, -458741, 0, 2, -458739, 131072, 2, -589807, 0, 1, -131087, 131072, 1, -262161, 0, 0, -131089, 0, 1, -262159, 131072, 0, 131053, 196609, 0, -19, 196609, 0, -131091, 196609, 0, -262163, 196609, 0, -393235, 196609, 0, -65521, 196609, 0, -196593, 196609, 0, -720881, 196609, 0, -589809, 196609, 0, -458737, 196609, 0, -327665, 196609, 0, 393199, 131072, 0, -17, 0, 2, -15, 131072, 2, -4, 0, 2, -2, 131072, 2)
 metadata/_edit_group_ = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_q6r6c")]
-position = Vector2(237, 111)
+position = Vector2(210, 164)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-2.00024, -36.0001)
 scale = Vector2(-24608.1, -190.929)
 zoom = Vector2(0.5, 0.5)
+
+[node name="Torch1" parent="." instance=ExtResource("5_kdubu")]
+position = Vector2(535, 148)
+script = ExtResource("6_d21ai")
+
+[node name="Torch2" parent="." instance=ExtResource("5_kdubu")]
+position = Vector2(-1009, 48)
+script = ExtResource("7_d21ai")
+
+[node name="Torch3" parent="." instance=ExtResource("5_kdubu")]
+position = Vector2(-958, -431)
+script = ExtResource("8_rj586")
+
+[node name="Torch4" parent="." instance=ExtResource("5_kdubu")]
+position = Vector2(386, -624)
+script = ExtResource("9_4d7sh")
+
+[node name="Ladder1" parent="." instance=ExtResource("10_ir8iy")]
+position = Vector2(-1177, -912)
+scale = Vector2(1, 6)
+script = ExtResource("11_hqns4")
+
+[node name="Ladder2" parent="." instance=ExtResource("10_ir8iy")]
+position = Vector2(452, -1254)
+scale = Vector2(1, 7.5)
+script = ExtResource("12_x0ka3")
+
+[node name="characterXijklNode" parent="." instance=ExtResource("13_0h7mo")]
+position = Vector2(-120, -233)
