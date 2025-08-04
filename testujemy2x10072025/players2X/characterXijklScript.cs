@@ -102,13 +102,14 @@ public partial class characterXijklScript : CharacterBody2D
 		}
 
 
+		/*
 		// Horizontal movement
 		velocity.X = 0;
 		if (Input.IsActionPressed("move_left_p2"))
 			velocity.X = -ijklSpeed;
 		else if (Input.IsActionPressed("move_right_p2"))
 			velocity.X = ijklSpeed;
-
+		*/
 
 		// displays on torch pickup
 		if (ijklTorchesDisplay == false)

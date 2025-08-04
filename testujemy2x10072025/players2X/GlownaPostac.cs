@@ -27,34 +27,34 @@ public partial class GlownaPostac : CharacterBody2D
 			// Climbing
 			if (Torches == 4 || Torches == 3)
 			{
-				if (Input.IsKeyPressed(Key.W))
+				if (Input.IsActionPressed("move_up_p1"))
 					velocity.Y = -Speed * 1.5f;
-				else if (Input.IsKeyPressed(Key.S))
+				else if (Input.IsActionPressed("move_down_p1"))
 					velocity.Y = Speed * 1.5f;
 				else
 					velocity.Y = 0;
 				
 				// Horizontal movement
 					velocity.X = 0;
-				if (Input.IsKeyPressed(Key.A))
+				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed * 1.5f;
-				else if (Input.IsKeyPressed(Key.D))
+				else if (Input.IsActionPressed("move_right_p1"))
 					velocity.X = Speed * 1.5f;
 			}
 			else
 			{
-				if (Input.IsKeyPressed(Key.W))
+				if (Input.IsActionPressed("move_up_p1"))
 					velocity.Y = -Speed * 1.5f;
-				else if (Input.IsKeyPressed(Key.S))
+				else if (Input.IsActionPressed("move_down_p1"))
 					velocity.Y = Speed * 1.5f;
 				else
 					velocity.Y = 0;
 				
 				// Horizontal movement 2
 					velocity.X = 0;
-				if (Input.IsKeyPressed(Key.A))
+				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed * 1.5f;
-				else if (Input.IsKeyPressed(Key.D))
+				else if (Input.IsActionPressed("move_right_p1"))
 					velocity.X = Speed * 1.5f;
 			}
 		}
@@ -63,38 +63,38 @@ public partial class GlownaPostac : CharacterBody2D
 		switch (Torches)
 		{
 			case 0:
-				if (Input.IsKeyPressed(Key.A))
+				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed / 4 * 3;
-				else if (Input.IsKeyPressed(Key.D))
+				else if (Input.IsActionPressed("move_right_p1"))
 					velocity.X = Speed / 4 * 3;
 				JumpForce = 500f;
 				break;
 			case 1:
-				if (Input.IsKeyPressed(Key.A))
+				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed * 1.25f;
-				else if (Input.IsKeyPressed(Key.D))
+				else if (Input.IsActionPressed("move_right_p1"))
 					velocity.X = Speed * 1.25f;
 				JumpForce = 650f;
 				//JumpForce = JumpForce * 1.3f;
 				break;
 			case 2:
-				if (Input.IsKeyPressed(Key.A))
+				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed * 1.5f;
-				else if (Input.IsKeyPressed(Key.D))
+				else if (Input.IsActionPressed("move_right_p1"))
 					velocity.X = Speed * 1.5f;
 				JumpForce = 650f;
 				break;
 			case 3:
-				if (Input.IsKeyPressed(Key.A))
+				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed * 1.5f;
-				else if (Input.IsKeyPressed(Key.D))
+				else if (Input.IsActionPressed("move_right_p1"))
 					velocity.X = Speed * 1.5f;
 				JumpForce = 650f;
 				break;
 			case 4:
-				if (Input.IsKeyPressed(Key.A))
+				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed * 2f;
-				else if (Input.IsKeyPressed(Key.D))
+				else if (Input.IsActionPressed("move_right_p1"))
 					velocity.X = Speed * 2f;
 				JumpForce = 650f;
 				break;
@@ -113,7 +113,7 @@ public partial class GlownaPostac : CharacterBody2D
 		// displays on torch pickup
 		if (TorchesDisplay == false)
 		{
-			GD.Print("You have: " + Torches + " Torches.");
+			GD.Print("Player1 has: " + Torches + " Torches.");
 			TorchesDisplay = true;
 		}
 
@@ -137,8 +137,8 @@ public partial class GlownaPostac : CharacterBody2D
 			var bullet = GD.Load<PackedScene>("res://Bullet.tscn").Instantiate<BulletP1cs>();
 			GetParent().AddChild(bullet);
 			bullet.GlobalPosition = GlobalPosition;
-			bullet.Init(Input.IsKeyPressed(Key.A) ? Vector2.Left :
-						Input.IsKeyPressed(Key.D) ? Vector2.Right : Vector2.Up);
+			bullet.Init(Input.IsActionPressed("move_left_p1") ? Vector2.Left :
+						Input.IsActionPressed("move_right_p1") ? Vector2.Right : Vector2.Up);
 		}
 
 

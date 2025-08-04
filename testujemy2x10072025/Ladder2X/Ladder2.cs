@@ -11,17 +11,25 @@ public partial class Ladder2 : Area2D
 
 	private void OnBodyEntered(Node body)
 	{
-		if (body is GlownaPostac player)
+		if (body is GlownaPostac player1)
 		{
-			player.OnLadder = true;
+			player1.OnLadder = true;
+		}
+		if (body is characterXijklScript player2)
+		{
+			player2.ijklOnLadder = true;
 		}
 	}
 
 	private void OnBodyExited(Node body)
 	{
-		if (body is GlownaPostac player)
+		if (body is GlownaPostac player1)
 		{
-			player.OnLadder = false;
+			player1.OnLadder = false;
+		}
+		if (body is characterXijklScript player2)
+		{
+			player2.ijklOnLadder = false;
 		}
 	}
 }
