@@ -1,11 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://bkgoj1amkdda6"]
+[gd_scene load_steps=20 format=3 uid="uid://bkgoj1amkdda6"]
 
-[ext_resource type="Texture2D" uid="uid://bt412erivwdvj" path="res://png_s/oscar-johansson-oscarjohansson-06.jpg" id="2_0e48y"]
-[ext_resource type="Texture2D" uid="uid://dho1mpw5bj1ab" path="res://png_s/tilesOneCave.png" id="2_0hol4"]
-[ext_resource type="Texture2D" uid="uid://l2wh2sv54eo7" path="res://png_s/tilesOneCave2.png" id="4_kdubu"]
+[ext_resource type="Texture2D" uid="uid://bt412erivwdvj" path="res://oscar-johansson-oscarjohansson-06.jpg" id="2_0e48y"]
+[ext_resource type="Texture2D" uid="uid://dho1mpw5bj1ab" path="res://tilesOneCave.png" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://l2wh2sv54eo7" path="res://tilesOneCave2.png" id="4_kdubu"]
 [ext_resource type="PackedScene" uid="uid://3jt5sm7b07ei" path="res://bullets2X/BulletP1Tscn.tscn" id="4_nr8wp"]
 [ext_resource type="PackedScene" uid="uid://bvt2ya8rbyno0" path="res://Torches4X/torch_1.tscn" id="5_kdubu"]
-[ext_resource type="PackedScene" uid="uid://btgqufov2i46o" path="res://players2X/glownaPostac.tscn" id="5_q6r6c"]
+[ext_resource type="PackedScene" uid="uid://btgqufov2i46o" path="res://scenyx2/glownaPostac.tscn" id="5_q6r6c"]
+[ext_resource type="Script" uid="uid://c7tnb5s3cgpug" path="res://players2X/GlownaPostac.cs" id="6_d2bti"]
 [ext_resource type="Script" uid="uid://b7ks3nho7wixu" path="res://Torches4X/Torch1.cs" id="6_d21ai"]
 [ext_resource type="Script" uid="uid://c2mvpghh6pm32" path="res://Torches4X/Torch2.cs" id="7_d21ai"]
 [ext_resource type="Script" uid="uid://dpp76lj88w0p6" path="res://Torches4X/Torch3.cs" id="8_rj586"]
@@ -189,6 +190,8 @@ metadata/_edit_group_ = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_q6r6c")]
 position = Vector2(210, 164)
+script = ExtResource("6_d2bti")
+BulletScene = ExtResource("4_nr8wp")
 
 [node name="characterXijklNode" parent="." instance=ExtResource("13_0h7mo")]
 position = Vector2(-120, -233)

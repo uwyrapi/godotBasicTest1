@@ -11,6 +11,8 @@ public partial class GlownaPostac : CharacterBody2D
 	[Export] public float Torches = 0f;
 	[Export] public bool TorchesDisplay = false;
 	[Export] public bool OnLadder = false;
+	[Export] public PackedScene BulletScene;
+
 
 
 	public override void _PhysicsProcess(double delta)
@@ -18,7 +20,7 @@ public partial class GlownaPostac : CharacterBody2D
 		Vector2 velocity = Velocity;
 		velocity.X = 0;
 		//movement speed relying on torch colletions
-		
+
 		if (OnLadder)
 		{
 			// No gravity
@@ -33,9 +35,9 @@ public partial class GlownaPostac : CharacterBody2D
 					velocity.Y = Speed * 1.5f;
 				else
 					velocity.Y = 0;
-				
+
 				// Horizontal movement
-					velocity.X = 0;
+				velocity.X = 0;
 				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed * 1.5f;
 				else if (Input.IsActionPressed("move_right_p1"))
@@ -49,16 +51,16 @@ public partial class GlownaPostac : CharacterBody2D
 					velocity.Y = Speed * 1.5f;
 				else
 					velocity.Y = 0;
-				
+
 				// Horizontal movement 2
-					velocity.X = 0;
+				velocity.X = 0;
 				if (Input.IsActionPressed("move_left_p1"))
 					velocity.X = -Speed * 1.5f;
 				else if (Input.IsActionPressed("move_right_p1"))
 					velocity.X = Speed * 1.5f;
 			}
 		}
-		
+
 		//i set all JumpForce values to be hardcoded because the game crashed after collecting a torch
 		switch (Torches)
 		{
@@ -132,14 +134,19 @@ public partial class GlownaPostac : CharacterBody2D
 		}
 
 		//instructions on how the bullet goes
-		if (Input.IsKeyPressed(Key.Q))
+		if (Input.IsKeyPressed(Key.Q) && BulletScene != null)
 		{
-			var bullet = GD.Load<PackedScene>("res://Bullet.tscn").Instantiate<BulletP1cs>();
-			GetParent().AddChild(bullet);
+			var bullet = BulletScene.Instantiate<BulletP1cs>();
 			bullet.GlobalPosition = GlobalPosition;
 			bullet.Init(Input.IsActionPressed("move_left_p1") ? Vector2.Left :
 						Input.IsActionPressed("move_right_p1") ? Vector2.Right : Vector2.Up);
+			GetParent().AddChild(bullet);
 		}
+		else if (Input.IsKeyPressed(Key.Q))
+		{
+			GD.PrintErr("BulletScene is NULL! Sprawdź czy przypięta w Inspectorze.");
+		}
+
 
 
 		Velocity = velocity;

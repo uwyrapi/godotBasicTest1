@@ -4,14 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://cdfgfv3eimdde" path="res://bullets2X/bulletBittestujemy2x.png" id="1_yl3e7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s41oc"]
-size = Vector2(6, 2)
+size = Vector2(11, 5.5)
 
 [node name="BulletP1Node" type="Area2D"]
+position = Vector2(-5, -4)
 script = ExtResource("1_sq100")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(5, -1)
+scale = Vector2(1.9, 2.5)
 texture = ExtResource("1_yl3e7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, -1)
 shape = SubResource("RectangleShape2D_s41oc")

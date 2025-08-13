@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://csk8c66xbsw55"]
 
 [ext_resource type="Script" uid="uid://cdeba7rmyak04" path="res://players2X/characterXijklScript.cs" id="1_nysqt"]
-[ext_resource type="Texture2D" uid="uid://614fgd3b874d" path="res://png_s/icon.svg" id="2_qpiin"]
+[ext_resource type="Texture2D" uid="uid://614fgd3b874d" path="res://icon.svg" id="2_qpiin"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf0cp"]
 size = Vector2(128, 128)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(-1, 23)
 scale = Vector2(3, 3)
 script = ExtResource("1_nysqt")
 

@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://btgqufov2i46o"]
 
 [ext_resource type="Script" uid="uid://c7tnb5s3cgpug" path="res://players2X/GlownaPostac.cs" id="1_52xe5"]
-[ext_resource type="Texture2D" uid="uid://614fgd3b874d" path="res://png_s/icon.svg" id="1_jnssa"]
+[ext_resource type="Texture2D" uid="uid://614fgd3b874d" path="res://icon.svg" id="1_jnssa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf0cp"]
 size = Vector2(128, 128)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(-1, 23)
 scale = Vector2(3, 3)
 script = ExtResource("1_52xe5")
 

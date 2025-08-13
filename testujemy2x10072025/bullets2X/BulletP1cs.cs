@@ -1,21 +1,17 @@
 using Godot;
 using System;
 
-public partial class BulletP1cs : Area2D
+public partial class BulletP1cs : Node2D // or whatever the root node is
 {
-	[Export] public float Speed = 400f;
-	private Vector2 _direction = new();
+	public Vector2 Direction = Vector2.Zero;
 
-	public void Init(Vector2 dir)
+	public void Init(Vector2 direction)
 	{
-		_direction = dir.Normalized();
+		Direction = direction;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Position += _direction * Speed * (float)delta;
-		if (!GetViewportRect().HasPoint(Position))
-			QueueFree();
+		Position += Direction * 600f * (float)delta;
 	}
-
 }
