@@ -12,13 +12,21 @@ public partial class GlownaPostac : CharacterBody2D
 	[Export] public bool TorchesDisplay = false;
 	[Export] public bool OnLadder = false;
 	[Export] public PackedScene BulletScene;
-
+	private Vector2 lastFacingDir = Vector2.Right;
 
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 		velocity.X = 0;
+
+		// --- your existing movement code ---
+		if (Input.IsActionPressed("move_left_p1"))
+			lastFacingDir = Vector2.Left;
+		else if (Input.IsActionPressed("move_right_p1"))
+			lastFacingDir = Vector2.Right;
+			Vector2 velocity2 = Velocity;
+			velocity.X = 0;
 		//movement speed relying on torch colletions
 
 		if (OnLadder)
@@ -132,22 +140,24 @@ public partial class GlownaPostac : CharacterBody2D
 		{
 			velocity.Y = -JumpForce;
 		}
-
-		//instructions on how the bullet goes
+		
 		if (Input.IsKeyPressed(Key.Q) && BulletScene != null)
-		{
-			var bullet = BulletScene.Instantiate<BulletP1cs>();
-			bullet.GlobalPosition = GlobalPosition;
-			bullet.Init(Input.IsActionPressed("move_left_p1") ? Vector2.Left :
-						Input.IsActionPressed("move_right_p1") ? Vector2.Right : Vector2.Up);
-			GetParent().AddChild(bullet);
-		}
-		else if (Input.IsKeyPressed(Key.Q))
-		{
-			GD.PrintErr("BulletScene is NULL! Sprawdź czy przypięta w Inspectorze.");
-		}
+			{
+				var bullet = BulletScene.Instantiate<BulletP1cs>();
 
+				// Distance from player center to collision box edge
+				float offsetDist = 60f; // tweak until it lines up with your shape
+				Vector2 spawnOffset = lastFacingDir * offsetDist;
 
+				bullet.GlobalPosition = GlobalPosition + spawnOffset;
+				bullet.Init(lastFacingDir);
+
+				GetParent().AddChild(bullet);
+			}
+			else if (Input.IsKeyPressed(Key.Q))
+			{
+				GD.PrintErr("BulletScene is NULL! Sprawdź czy przypięta w Inspectorze.");
+			}
 
 		Velocity = velocity;
 		MoveAndSlide();
