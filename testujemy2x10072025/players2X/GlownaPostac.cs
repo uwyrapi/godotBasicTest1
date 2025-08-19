@@ -13,6 +13,11 @@ public partial class GlownaPostac : CharacterBody2D
 	[Export] public bool OnLadder = false;
 	[Export] public PackedScene BulletScene;
 	private Vector2 lastFacingDir = Vector2.Right;
+	[Export] public ProgressBar ReloadBar; // drag your bar here in Inspector
+	private bool isReloading = false;
+	private float reloadTime = 1f; // seconds
+	private float reloadTimer = 0f;
+
 
 
 	public override void _PhysicsProcess(double delta)
@@ -25,8 +30,8 @@ public partial class GlownaPostac : CharacterBody2D
 			lastFacingDir = Vector2.Left;
 		else if (Input.IsActionPressed("move_right_p1"))
 			lastFacingDir = Vector2.Right;
-			Vector2 velocity2 = Velocity;
-			velocity.X = 0;
+		Vector2 velocity2 = Velocity;
+		velocity.X = 0;
 		//movement speed relying on torch colletions
 
 		if (OnLadder)
@@ -140,24 +145,44 @@ public partial class GlownaPostac : CharacterBody2D
 		{
 			velocity.Y = -JumpForce;
 		}
-		
-		if (Input.IsKeyPressed(Key.Q) && BulletScene != null)
+
+		if (!isReloading && Input.IsKeyPressed(Key.Q) && BulletScene != null)
+		{
+			var bullet = BulletScene.Instantiate<BulletP1cs>();
+
+			float offsetDist = 60f;
+			Vector2 spawnOffset = lastFacingDir * offsetDist;
+
+			bullet.GlobalPosition = GlobalPosition + spawnOffset;
+			bullet.Init(lastFacingDir);
+			GetParent().AddChild(bullet);
+
+			// Start reload
+			isReloading = true;
+			reloadTimer = 0f;
+			if (ReloadBar != null)
+				ReloadBar.Value = 0;
+		}
+
+		else if (Input.IsKeyPressed(Key.Q) && isReloading)
+		{
+			//GD.Print("");
+			//dont use this unless you're testing something
+		}
+
+		//new clip new clip!
+		if (isReloading)
+		{
+			reloadTimer += (float)delta;
+			ReloadBar.Value = reloadTimer / reloadTime; // 0 → 1
+			if (reloadTimer >= reloadTime)
 			{
-				var bullet = BulletScene.Instantiate<BulletP1cs>();
-
-				// Distance from player center to collision box edge
-				float offsetDist = 60f; // tweak until it lines up with your shape
-				Vector2 spawnOffset = lastFacingDir * offsetDist;
-
-				bullet.GlobalPosition = GlobalPosition + spawnOffset;
-				bullet.Init(lastFacingDir);
-
-				GetParent().AddChild(bullet);
+				isReloading = false;
+				ReloadBar.Value = 1;
+				//ReloadBar.Visible = false; // ukryj po zakończeniu
 			}
-			else if (Input.IsKeyPressed(Key.Q))
-			{
-				GD.PrintErr("BulletScene is NULL! Sprawdź czy przypięta w Inspectorze.");
-			}
+		}
+
 
 		Velocity = velocity;
 		MoveAndSlide();

@@ -187,11 +187,15 @@ layer_0/tile_data = PackedInt32Array(524287, 65536, 0, 524285, 65536, 0, 524283,
 metadata/_edit_group_ = true
 
 [node name="BulletP1Node" parent="." instance=ExtResource("4_nr8wp")]
+position = Vector2(1235, -591)
+collision_layer = 1
+collision_mask = 1
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("5_q6r6c")]
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("ReloadBar") instance=ExtResource("5_q6r6c")]
 position = Vector2(210, 164)
 script = ExtResource("6_d2bti")
 BulletScene = ExtResource("4_nr8wp")
+ReloadBar = NodePath("../reloadbarP1Node")
 
 [node name="characterXijklNode" parent="." instance=ExtResource("13_0h7mo")]
 position = Vector2(-120, -233)
@@ -226,3 +230,12 @@ script = ExtResource("11_hqns4")
 position = Vector2(452, -1254)
 scale = Vector2(1, 7.5)
 script = ExtResource("12_x0ka3")
+
+[node name="reloadbarP1Node" type="ProgressBar" parent="."]
+offset_left = 853.0
+offset_top = 205.0
+offset_right = 926.0
+offset_bottom = 532.0
+max_value = 1.0
+fill_mode = 3
+show_percentage = false

@@ -8,6 +8,8 @@ size = Vector2(11, 5.5)
 
 [node name="BulletP1Node" type="Area2D"]
 position = Vector2(-5, -4)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_sq100")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -19,3 +21,5 @@ texture = ExtResource("1_yl3e7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -31.75)
 shape = SubResource("RectangleShape2D_s41oc")
+
+[node name="BullerP1CharBodyNode" type="CharacterBody2D" parent="."]

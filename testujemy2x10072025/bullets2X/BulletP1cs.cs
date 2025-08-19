@@ -12,6 +12,6 @@ public partial class BulletP1cs : Node2D // or whatever the root node is
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Position += Direction * 600f * (float)delta;
+		Position += Direction * 1200f * (float)delta;
 	}
 }
