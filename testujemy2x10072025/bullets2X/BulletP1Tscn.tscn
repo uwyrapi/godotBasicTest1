@@ -21,5 +21,3 @@ texture = ExtResource("1_yl3e7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -31.75)
 shape = SubResource("RectangleShape2D_s41oc")
-
-[node name="BullerP1CharBodyNode" type="CharacterBody2D" parent="."]
